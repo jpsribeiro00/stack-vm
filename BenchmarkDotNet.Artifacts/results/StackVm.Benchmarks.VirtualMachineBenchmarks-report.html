@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>StackVm.Benchmarks.VirtualMachineBenchmarks-20261112-220502</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.14.0, Windows 10 (10.0.19045.7807/22H2/2022Update)
+AMD Ryzen 7 3800X, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 11.0.100
+  [Host]     : .NET 8.0.34 (8.0.3426.52217), X64 RyuJIT AVX2
+  DefaultJob : .NET 8.0.34 (8.0.3426.52217), X64 RyuJIT AVX2
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>Method</th><th>Workload</th><th>N</th><th>Mean  </th><th>Error</th><th>StdDev</th><th>Median</th><th>Ratio</th><th>RatioSD</th><th>Gen0</th><th>Gen1</th><th>Gen2</th><th>Allocated</th><th>Alloc Ratio</th>
+</tr>
+</thead><tbody><tr><td>DualStack</td><td>Arithmetic</td><td>100</td><td>1.835 &mu;s</td><td>0.0115 &mu;s</td><td>0.0096 &mu;s</td><td>1.831 &mu;s</td><td>1.02</td><td>0.01</td><td>0.0477</td><td>-</td><td>-</td><td>400 B</td><td>2.00</td>
+</tr><tr><td>SingleStack</td><td>Arithmetic</td><td>100</td><td>1.795 &mu;s</td><td>0.0048 &mu;s</td><td>0.0043 &mu;s</td><td>1.795 &mu;s</td><td>1.00</td><td>0.00</td><td>0.0229</td><td>-</td><td>-</td><td>200 B</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>Arithmetic</td><td>1000</td><td>17.429 &mu;s</td><td>0.0836 &mu;s</td><td>0.0741 &mu;s</td><td>17.411 &mu;s</td><td>1.01</td><td>0.01</td><td>0.0305</td><td>-</td><td>-</td><td>400 B</td><td>2.00</td>
+</tr><tr><td>SingleStack</td><td>Arithmetic</td><td>1000</td><td>17.313 &mu;s</td><td>0.0671 &mu;s</td><td>0.0595 &mu;s</td><td>17.287 &mu;s</td><td>1.00</td><td>0.00</td><td>-</td><td>-</td><td>-</td><td>200 B</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>Arithmetic</td><td>10000</td><td>174.920 &mu;s</td><td>1.0671 &mu;s</td><td>0.9981 &mu;s</td><td>174.716 &mu;s</td><td>0.99</td><td>0.01</td><td>-</td><td>-</td><td>-</td><td>400 B</td><td>2.00</td>
+</tr><tr><td>SingleStack</td><td>Arithmetic</td><td>10000</td><td>176.821 &mu;s</td><td>0.8573 &mu;s</td><td>0.8019 &mu;s</td><td>176.954 &mu;s</td><td>1.00</td><td>0.01</td><td>-</td><td>-</td><td>-</td><td>200 B</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>Calls</td><td>100</td><td>4.488 &mu;s</td><td>0.0056 &mu;s</td><td>0.0044 &mu;s</td><td>4.488 &mu;s</td><td>1.01</td><td>0.00</td><td>0.0458</td><td>-</td><td>-</td><td>400 B</td><td>2.00</td>
+</tr><tr><td>SingleStack</td><td>Calls</td><td>100</td><td>4.437 &mu;s</td><td>0.0100 &mu;s</td><td>0.0094 &mu;s</td><td>4.434 &mu;s</td><td>1.00</td><td>0.00</td><td>0.0229</td><td>-</td><td>-</td><td>200 B</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>Calls</td><td>1000</td><td>44.275 &mu;s</td><td>0.0463 &mu;s</td><td>0.0410 &mu;s</td><td>44.263 &mu;s</td><td>1.02</td><td>0.00</td><td>-</td><td>-</td><td>-</td><td>400 B</td><td>2.00</td>
+</tr><tr><td>SingleStack</td><td>Calls</td><td>1000</td><td>43.476 &mu;s</td><td>0.0372 &mu;s</td><td>0.0348 &mu;s</td><td>43.464 &mu;s</td><td>1.00</td><td>0.00</td><td>-</td><td>-</td><td>-</td><td>200 B</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>Calls</td><td>10000</td><td>434.517 &mu;s</td><td>0.7171 &mu;s</td><td>0.5598 &mu;s</td><td>434.366 &mu;s</td><td>1.00</td><td>0.00</td><td>-</td><td>-</td><td>-</td><td>400 B</td><td>2.00</td>
+</tr><tr><td>SingleStack</td><td>Calls</td><td>10000</td><td>434.654 &mu;s</td><td>1.4360 &mu;s</td><td>1.3432 &mu;s</td><td>434.498 &mu;s</td><td>1.00</td><td>0.00</td><td>-</td><td>-</td><td>-</td><td>200 B</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>Mixed</td><td>100</td><td>7.800 &mu;s</td><td>0.0177 &mu;s</td><td>0.0148 &mu;s</td><td>7.796 &mu;s</td><td>1.02</td><td>0.00</td><td>0.0458</td><td>-</td><td>-</td><td>400 B</td><td>2.00</td>
+</tr><tr><td>SingleStack</td><td>Mixed</td><td>100</td><td>7.661 &mu;s</td><td>0.0114 &mu;s</td><td>0.0106 &mu;s</td><td>7.661 &mu;s</td><td>1.00</td><td>0.00</td><td>0.0153</td><td>-</td><td>-</td><td>200 B</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>Mixed</td><td>1000</td><td>77.274 &mu;s</td><td>0.0378 &mu;s</td><td>0.0316 &mu;s</td><td>77.275 &mu;s</td><td>1.00</td><td>0.01</td><td>-</td><td>-</td><td>-</td><td>400 B</td><td>2.00</td>
+</tr><tr><td>SingleStack</td><td>Mixed</td><td>1000</td><td>77.406 &mu;s</td><td>0.4804 &mu;s</td><td>0.4494 &mu;s</td><td>77.325 &mu;s</td><td>1.00</td><td>0.01</td><td>-</td><td>-</td><td>-</td><td>200 B</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>Mixed</td><td>10000</td><td>614.168 &mu;s</td><td>11.8862 &mu;s</td><td>17.0469 &mu;s</td><td>604.307 &mu;s</td><td>1.02</td><td>0.03</td><td>-</td><td>-</td><td>-</td><td>401 B</td><td>2.00</td>
+</tr><tr><td>SingleStack</td><td>Mixed</td><td>10000</td><td>604.448 &mu;s</td><td>1.0899 &mu;s</td><td>0.9101 &mu;s</td><td>604.327 &mu;s</td><td>1.00</td><td>0.00</td><td>-</td><td>-</td><td>-</td><td>200 B</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>Recursion</td><td>100</td><td>9.788 &mu;s</td><td>0.0499 &mu;s</td><td>0.0466 &mu;s</td><td>9.794 &mu;s</td><td>1.00</td><td>0.01</td><td>0.3662</td><td>-</td><td>-</td><td>3080 B</td><td>0.74</td>
+</tr><tr><td>SingleStack</td><td>Recursion</td><td>100</td><td>9.808 &mu;s</td><td>0.0848 &mu;s</td><td>0.0793 &mu;s</td><td>9.775 &mu;s</td><td>1.00</td><td>0.01</td><td>0.4883</td><td>-</td><td>-</td><td>4136 B</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>Recursion</td><td>1000</td><td>100.628 &mu;s</td><td>1.2958 &mu;s</td><td>1.2121 &mu;s</td><td>100.455 &mu;s</td><td>1.03</td><td>0.02</td><td>2.9297</td><td>-</td><td>-</td><td>24728 B</td><td>0.75</td>
+</tr><tr><td>SingleStack</td><td>Recursion</td><td>1000</td><td>97.493 &mu;s</td><td>1.1228 &mu;s</td><td>0.9953 &mu;s</td><td>97.258 &mu;s</td><td>1.00</td><td>0.01</td><td>3.9063</td><td>-</td><td>-</td><td>32880 B</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>Recursion</td><td>10000</td><td>1,058.980 &mu;s</td><td>20.8901 &mu;s</td><td>20.5169 &mu;s</td><td>1,053.972 &mu;s</td><td>1.01</td><td>0.02</td><td>41.0156</td><td>41.0156</td><td>41.0156</td><td>393575 B</td><td>1.50</td>
+</tr><tr><td>SingleStack</td><td>Recursion</td><td>10000</td><td>1,049.879 &mu;s</td><td>10.4303 &mu;s</td><td>8.7098 &mu;s</td><td>1,048.612 &mu;s</td><td>1.00</td><td>0.01</td><td>41.0156</td><td>41.0156</td><td>41.0156</td><td>262343 B</td><td>1.00</td>
+</tr></tbody></table>
+</body>
+</html>
