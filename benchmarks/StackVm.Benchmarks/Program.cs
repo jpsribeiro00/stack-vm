@@ -1,4 +1,7 @@
 using BenchmarkDotNet.Running;
+
 using StackVm.Benchmarks;
 
-BenchmarkRunner.Run<VirtualMachineBenchmarks>();
+BenchmarkSwitcher.FromAssembly(
+    typeof(CallAndMixedBenchmarks).Assembly
+).Run(args);

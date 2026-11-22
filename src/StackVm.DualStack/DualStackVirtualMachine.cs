@@ -12,17 +12,31 @@ public sealed class DualStackVirtualMachine : VirtualMachineBase
     private int _frame;
     private long _metadataPushes, _metadataPops;
     private int _maxCombinedSlots;
+    private readonly int _initialCapacity;
 
     private int OperandFloor => _frame + LocalCount;
 
     /// <inheritdoc />
     protected override bool IsRootFrame => _returns.Count == 0;
 
+    /// <summary>
+    /// Initializes a virtual machine with configurable
+    /// initial capacities for its physical stacks.
+    /// </summary>
+    /// <param name="initialCapacity">
+    /// Initial number of integer slots per physical stack.
+    /// </param>
+    public DualStackVirtualMachine(int initialCapacity = 32)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(initialCapacity);
+        _initialCapacity = initialCapacity;
+    }
+
     /// <inheritdoc />
     protected override void Initialize()
     {
-        _data = new IntStack(trackMetrics: CollectMetrics);
-        _returns = new IntStack(trackMetrics: CollectMetrics);
+        _data = new IntStack(_initialCapacity, trackMetrics: CollectMetrics);
+        _returns = new IntStack(_initialCapacity, trackMetrics: CollectMetrics);
         _frame = 0;
         _metadataPushes = _metadataPops = 0;
         _maxCombinedSlots = 0;
@@ -92,4 +106,14 @@ public sealed class DualStackVirtualMachine : VirtualMachineBase
     protected override (long MetadataPushes, long MetadataPops, int DataPeak, int ReturnPeak, int TotalPeak, int AllocatedPeak, long Resizes) GetStorageMetrics()
         => (_metadataPushes, _metadataPops, _data.PeakCount, _returns.PeakCount, _maxCombinedSlots,
             _data.PeakCapacity + _returns.PeakCapacity, _data.ResizeCount + _returns.ResizeCount);
+
+    /// <inheritdoc />
+    protected override (long DataResizes, long ReturnResizes, int DataCapacity, int ReturnCapacity) GetBufferMetrics()
+    {
+        return (
+            _data.ResizeCount,
+            _returns.ResizeCount,
+            _data.PeakCapacity,
+            _returns.PeakCapacity);
+    }
 }

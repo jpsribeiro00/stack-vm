@@ -10,6 +10,7 @@ public sealed class SingleStackVirtualMachine : VirtualMachineBase
     private IntStack _stack = null!;
     private int _frame;
     private long _metadataPushes, _metadataPops;
+    private readonly int _initialCapacity;
 
     private int OperandFloor => _frame + 2 + LocalCount;
 
@@ -19,7 +20,7 @@ public sealed class SingleStackVirtualMachine : VirtualMachineBase
     /// <inheritdoc />
     protected override void Initialize()
     {
-        _stack = new IntStack(trackMetrics: CollectMetrics);
+        _stack = new IntStack(_initialCapacity, trackMetrics: CollectMetrics);
         _frame = 0;
         _metadataPushes = _metadataPops = 0;
 
@@ -28,6 +29,19 @@ public sealed class SingleStackVirtualMachine : VirtualMachineBase
 
         for (int i = 0; i < LocalCount; i++)
             _stack.Push(0);
+    }
+
+    /// <summary>
+    /// Initializes a virtual machine with a configurable
+    /// initial stack capacity.
+    /// </summary>
+    /// <param name="initialCapacity">
+    /// Initial number of integer slots allocated.
+    /// </param>
+    public SingleStackVirtualMachine(int initialCapacity = 32)
+    {
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(initialCapacity);
+        _initialCapacity = initialCapacity;
     }
 
     /// <inheritdoc />
@@ -80,4 +94,10 @@ public sealed class SingleStackVirtualMachine : VirtualMachineBase
     /// <inheritdoc />
     protected override (long MetadataPushes, long MetadataPops, int DataPeak, int ReturnPeak, int TotalPeak, int AllocatedPeak, long Resizes) GetStorageMetrics()
         => (_metadataPushes, _metadataPops, _stack.PeakCount, 0, _stack.PeakCount, _stack.PeakCapacity, _stack.ResizeCount);
+
+    /// <inheritdoc />
+    protected override (long DataResizes, long ReturnResizes, int DataCapacity, int ReturnCapacity) GetBufferMetrics()
+    {
+        return (_stack.ResizeCount, 0, _stack.PeakCapacity, 0);
+    }
 }

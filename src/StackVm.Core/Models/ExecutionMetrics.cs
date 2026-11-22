@@ -19,4 +19,8 @@ public sealed record ExecutionMetrics(
     int MaxReturnStackSlots,
     int MaxTotalStackSlots,
     int MaxAllocatedSlots,
-    long StackResizes);
+    long StackResizes,
+    long DataStackResizes,
+    long ReturnStackResizes,
+    int MaxDataAllocatedSlots,
+    int MaxReturnAllocatedSlots);

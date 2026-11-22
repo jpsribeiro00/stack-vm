@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>StackVm.CapacityBenchmarks.CapacityBenchmarks-20261121-113303</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.14.0, Windows 10 (10.0.19045.7807/22H2/2022Update)
+AMD Ryzen 7 3800X, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 11.0.100
+  [Host]     : .NET 8.0.34 (8.0.3426.52217), X64 RyuJIT AVX2
+  DefaultJob : .NET 8.0.34 (8.0.3426.52217), X64 RyuJIT AVX2
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>Method</th><th>N</th><th>InitialCapacity</th><th>Mean  </th><th>Error</th><th>StdDev</th><th>Median</th><th>Ratio</th><th>RatioSD</th><th>Gen0</th><th>Gen1</th><th>Gen2</th><th>Allocated</th><th>Alloc Ratio</th>
+</tr>
+</thead><tbody><tr><td>SingleStack</td><td>100</td><td>8</td><td>10.099 &mu;s</td><td>0.0521 &mu;s</td><td>0.0462 &mu;s</td><td>10.086 &mu;s</td><td>1.00</td><td>0.01</td><td>0.5035</td><td>-</td><td>-</td><td>4.18 KB</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>100</td><td>8</td><td>10.035 &mu;s</td><td>0.0514 &mu;s</td><td>0.0480 &mu;s</td><td>10.029 &mu;s</td><td>0.99</td><td>0.01</td><td>0.3967</td><td>-</td><td>-</td><td>3.29 KB</td><td>0.79</td>
+</tr><tr><td>SingleStack</td><td>100</td><td>32</td><td>10.075 &mu;s</td><td>0.0286 &mu;s</td><td>0.0254 &mu;s</td><td>10.082 &mu;s</td><td>1.00</td><td>0.00</td><td>0.4883</td><td>-</td><td>-</td><td>4.04 KB</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>100</td><td>32</td><td>9.842 &mu;s</td><td>0.0355 &mu;s</td><td>0.0314 &mu;s</td><td>9.846 &mu;s</td><td>0.98</td><td>0.00</td><td>0.3662</td><td>-</td><td>-</td><td>3.01 KB</td><td>0.74</td>
+</tr><tr><td>SingleStack</td><td>100</td><td>128</td><td>9.802 &mu;s</td><td>0.0412 &mu;s</td><td>0.0344 &mu;s</td><td>9.806 &mu;s</td><td>1.00</td><td>0.00</td><td>0.4425</td><td>-</td><td>-</td><td>3.62 KB</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>100</td><td>128</td><td>9.766 &mu;s</td><td>0.0264 &mu;s</td><td>0.0247 &mu;s</td><td>9.763 &mu;s</td><td>1.00</td><td>0.00</td><td>0.2594</td><td>-</td><td>-</td><td>2.16 KB</td><td>0.60</td>
+</tr><tr><td>SingleStack</td><td>100</td><td>512</td><td>9.674 &mu;s</td><td>0.0603 &mu;s</td><td>0.0503 &mu;s</td><td>9.660 &mu;s</td><td>1.00</td><td>0.01</td><td>0.2441</td><td>-</td><td>-</td><td>2.07 KB</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>100</td><td>512</td><td>9.986 &mu;s</td><td>0.0483 &mu;s</td><td>0.0452 &mu;s</td><td>9.962 &mu;s</td><td>1.03</td><td>0.01</td><td>0.5035</td><td>-</td><td>-</td><td>4.14 KB</td><td>2.00</td>
+</tr><tr><td>SingleStack</td><td>1000</td><td>8</td><td>98.830 &mu;s</td><td>0.4537 &mu;s</td><td>0.3788 &mu;s</td><td>98.877 &mu;s</td><td>1.00</td><td>0.01</td><td>3.9063</td><td>-</td><td>-</td><td>32.25 KB</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>1000</td><td>8</td><td>99.353 &mu;s</td><td>0.2772 &mu;s</td><td>0.2458 &mu;s</td><td>99.296 &mu;s</td><td>1.01</td><td>0.00</td><td>2.9297</td><td>-</td><td>-</td><td>24.43 KB</td><td>0.76</td>
+</tr><tr><td>SingleStack</td><td>1000</td><td>32</td><td>96.970 &mu;s</td><td>0.1868 &mu;s</td><td>0.1747 &mu;s</td><td>96.958 &mu;s</td><td>1.00</td><td>0.00</td><td>3.9063</td><td>-</td><td>-</td><td>32.11 KB</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>1000</td><td>32</td><td>99.086 &mu;s</td><td>0.1934 &mu;s</td><td>0.1510 &mu;s</td><td>99.115 &mu;s</td><td>1.02</td><td>0.00</td><td>2.9297</td><td>-</td><td>-</td><td>24.15 KB</td><td>0.75</td>
+</tr><tr><td>SingleStack</td><td>1000</td><td>128</td><td>97.783 &mu;s</td><td>0.2851 &mu;s</td><td>0.2667 &mu;s</td><td>97.780 &mu;s</td><td>1.00</td><td>0.00</td><td>3.6621</td><td>-</td><td>-</td><td>31.69 KB</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>1000</td><td>128</td><td>99.178 &mu;s</td><td>0.1311 &mu;s</td><td>0.1162 &mu;s</td><td>99.140 &mu;s</td><td>1.01</td><td>0.00</td><td>2.6855</td><td>-</td><td>-</td><td>23.3 KB</td><td>0.74</td>
+</tr><tr><td>SingleStack</td><td>1000</td><td>512</td><td>97.131 &mu;s</td><td>0.2330 &mu;s</td><td>0.2179 &mu;s</td><td>97.191 &mu;s</td><td>1.00</td><td>0.00</td><td>3.6621</td><td>-</td><td>-</td><td>30.14 KB</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>1000</td><td>512</td><td>100.618 &mu;s</td><td>0.7982 &mu;s</td><td>0.7466 &mu;s</td><td>100.417 &mu;s</td><td>1.04</td><td>0.01</td><td>2.4414</td><td>-</td><td>-</td><td>20.21 KB</td><td>0.67</td>
+</tr><tr><td>SingleStack</td><td>10000</td><td>8</td><td>1,078.524 &mu;s</td><td>21.2102 &mu;s</td><td>29.7338 &mu;s</td><td>1,063.687 &mu;s</td><td>1.00</td><td>0.04</td><td>41.0156</td><td>41.0156</td><td>41.0156</td><td>256.33 KB</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>10000</td><td>8</td><td>1,092.988 &mu;s</td><td>18.6583 &mu;s</td><td>19.9641 &mu;s</td><td>1,085.783 &mu;s</td><td>1.01</td><td>0.03</td><td>41.0156</td><td>41.0156</td><td>41.0156</td><td>384.63 KB</td><td>1.50</td>
+</tr><tr><td>SingleStack</td><td>10000</td><td>32</td><td>1,096.027 &mu;s</td><td>21.5797 &mu;s</td><td>34.2277 &mu;s</td><td>1,079.391 &mu;s</td><td>1.00</td><td>0.04</td><td>41.0156</td><td>41.0156</td><td>41.0156</td><td>256.19 KB</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>10000</td><td>32</td><td>1,058.275 &mu;s</td><td>19.8416 &mu;s</td><td>18.5598 &mu;s</td><td>1,049.407 &mu;s</td><td>0.97</td><td>0.03</td><td>41.0156</td><td>41.0156</td><td>41.0156</td><td>384.35 KB</td><td>1.50</td>
+</tr><tr><td>SingleStack</td><td>10000</td><td>128</td><td>1,075.159 &mu;s</td><td>21.1399 &mu;s</td><td>30.9866 &mu;s</td><td>1,057.674 &mu;s</td><td>1.00</td><td>0.04</td><td>41.0156</td><td>41.0156</td><td>41.0156</td><td>255.77 KB</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>10000</td><td>128</td><td>1,067.887 &mu;s</td><td>13.9615 &mu;s</td><td>13.0596 &mu;s</td><td>1,059.081 &mu;s</td><td>0.99</td><td>0.03</td><td>41.0156</td><td>41.0156</td><td>41.0156</td><td>383.51 KB</td><td>1.50</td>
+</tr><tr><td>SingleStack</td><td>10000</td><td>512</td><td>1,068.547 &mu;s</td><td>18.8380 &mu;s</td><td>27.0169 &mu;s</td><td>1,059.672 &mu;s</td><td>1.00</td><td>0.03</td><td>41.0156</td><td>41.0156</td><td>41.0156</td><td>254.23 KB</td><td>1.00</td>
+</tr><tr><td>DualStack</td><td>10000</td><td>512</td><td>1,072.504 &mu;s</td><td>21.1438 &mu;s</td><td>21.7131 &mu;s</td><td>1,060.707 &mu;s</td><td>1.00</td><td>0.03</td><td>41.0156</td><td>41.0156</td><td>41.0156</td><td>380.41 KB</td><td>1.50</td>
+</tr></tbody></table>
+</body>
+</html>

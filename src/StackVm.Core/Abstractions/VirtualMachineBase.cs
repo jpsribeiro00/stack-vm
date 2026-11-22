@@ -1,3 +1,5 @@
+using System;
+
 namespace StackVm.Core;
 
 /// <summary>
@@ -188,6 +190,14 @@ public abstract class VirtualMachineBase : IVirtualMachine
         }
     }
 
+    /// <summary>
+    /// Gets allocation and resize metrics for each physical stack.
+    /// </summary>
+    /// <returns>
+    /// Per-buffer resize counts and maximum capacities.
+    /// </returns>
+    protected abstract (long DataResizes, long ReturnResizes, int DataCapacity, int ReturnCapacity) GetBufferMetrics();
+
     private void PushData(int value)
     {
         Push(value);
@@ -205,11 +215,29 @@ public abstract class VirtualMachineBase : IVirtualMachine
     {
         if (!_collectMetrics) return new ExecutionResult(value, _steps);
         var storage = GetStorageMetrics();
-        return new ExecutionResult(value, _steps, new ExecutionMetrics(
-            _dataPushes, _dataPops, storage.MetadataPushes, storage.MetadataPops,
-            _localReads, _localWrites, _calls, _returns, _maxDepth,
-            storage.DataPeak, storage.ReturnPeak, storage.TotalPeak,
-            storage.AllocatedPeak, storage.Resizes));
+        var buffers = GetBufferMetrics();
+
+        return new ExecutionResult(value, _steps, 
+            new ExecutionMetrics(
+            _dataPushes,
+            _dataPops,
+            storage.MetadataPushes,
+            storage.MetadataPops,
+            _localReads,
+            _localWrites,
+            _calls,
+            _returns,
+            _maxDepth,
+            storage.DataPeak,
+            storage.ReturnPeak,
+            storage.TotalPeak,
+            storage.AllocatedPeak,
+            storage.Resizes,
+            buffers.DataResizes,
+            buffers.ReturnResizes,
+            buffers.DataCapacity,
+            buffers.ReturnCapacity
+        ));
     }
 
     private void ValidateLocal(int index)

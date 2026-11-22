@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+		<ProjectReference Include="../../src/StackVm.Core/StackVm.Core.csproj" />
+		<ProjectReference Include="../../src/StackVm.SingleStack/StackVm.SingleStack.csproj" />
+		<ProjectReference Include="../../src/StackVm.DualStack/StackVm.DualStack.csproj" />
+	</ItemGroup>
+</Project>
